@@ -1,10 +1,18 @@
 /* Global Styles */
+/* Reset and Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #121212;
     color: #e0e0e0;
+    overflow-x: hidden; /* Hide horizontal overflow */
 }
 
 /* Header Styles */
@@ -15,6 +23,8 @@ header {
     width: 100%;
     top: 0;
     z-index: 100;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 header h1 {
@@ -25,17 +35,20 @@ header h1 {
 }
 
 nav {
-    float: right;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
 nav ul {
     list-style: none;
+    display: flex;
+    flex-wrap: wrap;
     margin: 0;
     padding: 0;
 }
 
 nav li {
-    display: inline-block;
     margin-left: 20px;
 }
 
@@ -43,6 +56,7 @@ nav a {
     color: #e0e0e0;
     text-decoration: none;
     font-size: 18px;
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 nav a:hover {
@@ -51,8 +65,12 @@ nav a:hover {
 
 /* Main Content Styles */
 main {
-    padding: 120px 20px 60px 20px; /* Adjusted for fixed header */
+    padding: 120px 20px 80px 20px;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow-x: hidden;
 }
+
 
 section {
     margin-bottom: 60px;
