@@ -80,7 +80,7 @@ section {
 section#home img {
     width: 200px;
     height: 200px;
-    border-radius: 50%;
+    border-radius: 60%;
     object-fit: cover; /* Prevents image distortion */
     object-position: center top;
 }
