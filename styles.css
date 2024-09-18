@@ -64,6 +64,7 @@ section#home img {
     height: 200px;
     border-radius: 50%;
     object-fit: cover; /* Prevents image distortion */
+    object-position: center bottom;
 }
 
 /* Footer Styles */
