@@ -1,39 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <title>Akash Nag Oruganti - Quantitative Researcher</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akash • Journey</title>
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
 </head>
-<body>
-    <header>
-        <h1>Akash Nag Oruganti</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="publications.html">Publications</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="bg-gradient-to-br from-indigo-100 via-slate-50 to-emerald-100 text-slate-900 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 dark:text-slate-100">
+  <!-- NAV -->
+  <nav class="mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
+    <div class="flex items-center gap-2 font-semibold">
+      <span>🧭</span>
+      <span>Akash • Journey</span>
+    </div>
+    <div class="flex items-center gap-3 text-sm">
+      <a href="#journey" class="opacity-80 hover:opacity-100">Journey</a>
+      <a href="#work" class="opacity-80 hover:opacity-100">Work</a>
+      <a href="#contact" class="opacity-80 hover:opacity-100">Contact</a>
+      <button id="darkToggle" class="ml-2 rounded-xl border px-3 py-1 text-xs shadow-sm hover:shadow dark:border-slate-700">Light</button>
+    </div>
+  </nav>
 
-    <main>
-        <section id="home">
-            <img src="DSCF2017.jpg" alt="Akash Nag Oruganti">
-            <h2>Quantitative Researcher & Financial Analyst</h2>
-            <p>
-                Welcome to my personal website. I am a dedicated researcher specializing in the intersection of quantum information theory and quantitative finance, with a strong foundation in mathematical modeling and data analysis.
-            </p>
-            <p><a href="about.html" class="button">Learn More About Me</a></p>
-        </section>
-    </main>
+  <!-- HERO -->
+  <section class="mx-auto max-w-6xl px-6 pt-2 pb-10">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+          A Road Through <span class="text-indigo-600">Quantum</span> → <span class="text-emerald-500">Quant</span>
+        </h1>
+        <p class="mt-4 text-slate-600 dark:text-slate-300">
+          Quantum information theorist with an integrated BSc+MSc in Physics and a PhD in CV-QKD (in progress), now
+          moving into quantitative research and data analysis. This page highlights the key waypoints.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs dark:bg-indigo-500/10 dark:text-indigo-300">CV-QKD</span>
+          <span class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs dark:bg-indigo-500/10 dark:text-indigo-300">Gaussian states</span>
+          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs dark:bg-emerald-500/10 dark:text-emerald-300">Time-series</span>
+          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs dark:bg-emerald-500/10 dark:text-emerald-300">Risk & ML</span>
+          <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs dark:bg-slate-800 dark:text-slate-300">Python • Mathematica</span>
+        </div>
+        <div class="mt-6 flex gap-3">
+          <a href="#work" class="px-4 py-2 rounded-xl bg-slate-900 text-white shadow hover:shadow-md dark:bg-slate-100 dark:text-slate-900">View Work</a>
+          <a href="#contact" class="px-4 py-2 rounded-xl bg-white text-slate-900 border shadow hover:shadow-md dark:bg-slate-900 dark:text-slate-100 dark:border-slate-700">Contact</a>
+          <a href="https://github.com/akash1nag" target="_blank" class="px-4 py-2 rounded-xl bg-white text-slate-900 border shadow hover:shadow-md dark:bg-slate-900 dark:text-slate-100 dark:border-slate-700">GitHub</a>
+        </div>
+      </div>
+      <!-- Personal photo -->
+      <div class="relative flex justify-center items-center">
+        <img src="images/DSCF2017.jpg" alt="Akash profile photo" class="w-64 h-64 object-cover rounded-full border-4 border-white shadow-xl dark:border-slate-800">
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2025 Akash Nag Oruganti</p>
-    </footer>
-</body>
-</html>
+  <!-- JOURNEY ROAD WITH MILESTONES (simplified) -->
+  <section id="journey" class="mx-auto max-w-6xl px-6 pb-20">
+    <h2 class="text-2xl font-semibold mb-6">Journey</h2>
+    <div class="relative">
+      <div class="a
