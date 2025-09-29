@@ -56,8 +56,97 @@
     </div>
   </section>
 
-  <!-- JOURNEY ROAD WITH MILESTONES (simplified) -->
+  <!-- JOURNEY -->
   <section id="journey" class="mx-auto max-w-6xl px-6 pb-20">
     <h2 class="text-2xl font-semibold mb-6">Journey</h2>
     <div class="relative">
-      <div class="a
+      <div class="absolute inset-0 -z-10">
+        <svg viewBox="0 0 1200 600" class="w-full h-full">
+          <defs>
+            <linearGradient id="roadGrad2" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#6366f1" />
+              <stop offset="100%" stop-color="#10b981" />
+            </linearGradient>
+          </defs>
+          <path d="M 40 560 C 260 480, 420 540, 600 460 S 980 320, 1160 120" stroke="url(#roadGrad2)" stroke-width="12" fill="none" stroke-linecap="round" />
+          <path d="M 40 560 C 260 480, 420 540, 600 460 S 980 320, 1160 120" stroke="#ffffff" stroke-width="3" fill="none" stroke-dasharray="10 14" opacity="0.9" class="dark:opacity-30" />
+        </svg>
+      </div>
+      <div class="grid gap-10">
+        <div class="p-4 rounded-2xl shadow-sm border bg-white dark:bg-slate-900 dark:border-slate-700">
+          <div class="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">2016–2021</div>
+          <div class="font-semibold text-slate-900 dark:text-slate-100">Integrated BSc + MSc in Physics</div>
+          <div class="text-slate-600 dark:text-slate-300 text-sm">Foundations in quantum mechanics, statistics, and modelling</div>
+        </div>
+        <div class="p-4 rounded-2xl shadow-sm border bg-white dark:bg-slate-900 dark:border-slate-700">
+          <div class="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">2019–2021</div>
+          <div class="font-semibold text-slate-900 dark:text-slate-100">MSc: Advanced Optical Technology</div>
+          <div class="text-slate-600 dark:text-slate-300 text-sm">Thesis on open quantum systems; experimental & theoretical tools</div>
+        </div>
+        <div class="p-4 rounded-2xl shadow-sm border bg-white dark:bg-slate-900 dark:border-slate-700">
+          <div class="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">2021–2025</div>
+          <div class="font-semibold text-slate-900 dark:text-slate-100">PhD: Continuous-Variable QKD</div>
+          <div class="text-slate-600 dark:text-slate-300 text-sm">Gaussian states, finite-size effects, multi-user QPON, quotient-graph methods</div>
+        </div>
+        <div class="p-4 rounded-2xl shadow-sm border bg-white dark:bg-slate-900 dark:border-slate-700">
+          <div class="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">2024–2025</div>
+          <div class="font-semibold text-slate-900 dark:text-slate-100">Composable Security & Entropies</div>
+          <div class="text-slate-600 dark:text-slate-300 text-sm">Smooth min-/max-entropy, parameter estimation, privacy amplification</div>
+        </div>
+        <div class="p-4 rounded-2xl shadow-sm border bg-white dark:bg-slate-900 dark:border-slate-700">
+          <div class="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">2025 →</div>
+          <div class="font-semibold text-slate-900 dark:text-slate-100">Quant / Data Analysis</div>
+          <div class="text-slate-600 dark:text-slate-300 text-sm">Time-series, factor models, risk, ML; bridging physics intuition with markets</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="mx-auto max-w-6xl px-6 pb-16">
+    <h2 class="text-2xl font-semibold mb-4">Selected Work</h2>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="rounded-2xl border bg-white p-4 shadow-sm hover:shadow dark:bg-slate-900 dark:border-slate-700">
+        <div class="text-sm text-slate-500 dark:text-slate-400">Research</div>
+        <div class="font-semibold">CV-QKD with Squeezed States</div>
+        <div class="text-sm text-slate-600 dark:text-slate-300">QKD protocols, imperfections, key rates</div>
+      </div>
+      <div class="rounded-2xl border bg-white p-4 shadow-sm hover:shadow dark:bg-slate-900 dark:border-slate-700">
+        <div class="text-sm text-slate-500 dark:text-slate-400">Research</div>
+        <div class="font-semibold">Finite-Size Security</div>
+        <div class="text-sm text-slate-600 dark:text-slate-300">Composable security, smooth entropies</div>
+      </div>
+      <div class="rounded-2xl border bg-white p-4 shadow-sm hover:shadow dark:bg-slate-900 dark:border-slate-700">
+        <div class="text-sm text-slate-500 dark:text-slate-400">Research</div>
+        <div class="font-semibold">Quantum PON Networks</div>
+        <div class="text-sm text-slate-600 dark:text-slate-300">Downstream multi-user access</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact" class="border-t bg-white/60 backdrop-blur dark:bg-slate-900/60 dark:border-slate-800">
+    <div class="mx-auto max-w-6xl px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-sm text-slate-600 dark:text-slate-300">© 2025 Akash. All rights reserved.</div>
+      <div class="flex items-center gap-4 text-sm">
+        <a href="mailto:email@example.com" class="flex items-center gap-2 hover:underline">📧 email@example.com</a>
+        <a href="https://github.com/akash1nag" target="_blank" class="flex items-center gap-2 hover:underline">💻 GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('darkToggle');
+    toggle.addEventListener('click', () => {
+      const root = document.documentElement;
+      if (root.classList.contains('dark')) {
+        root.classList.remove('dark');
+        toggle.textContent = 'Dark';
+      } else {
+        root.classList.add('dark');
+        toggle.textContent = 'Light';
+      }
+    });
+  </script>
+</body>
+</html>
