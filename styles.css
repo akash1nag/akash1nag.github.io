@@ -1,0 +1,127 @@
+/* Global Styles */
+/* Reset and Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #e0e0e0;
+    overflow-x: hidden; /* Hide horizontal overflow */
+}
+
+/* Header Styles */
+header {
+    background-color: #1e1e1e;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #ffffff;
+    display: inline-block;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 18px;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+nav a:hover {
+    color: #bb86fc;
+}
+
+/* Main Content Styles */
+main {
+    padding: 120px 20px 80px 20px;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
+section {
+    margin-bottom: 60px;
+}
+
+/* Image Styles */
+section#home img {
+    width: 200px;
+    height: 200px;
+    border-radius: 60%;
+    object-fit: cover; /* Prevents image distortion */
+    object-position: center top;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Button Styles */
+.button {
+    background-color: #bb86fc;
+    color: #121212;
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #9b59b6;
+    color: #ffffff;
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+    nav {
+        float: none;
+    }
+    nav ul {
+        text-align: center;
+    }
+    nav li {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
