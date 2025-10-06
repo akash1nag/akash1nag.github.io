@@ -460,7 +460,7 @@ export default function QuantumJourneyHero() {
 
                 alt="Akash profile photo"
 
-                className="w-64 h-64 object-cover rounded-full border-4 border-white shadow-2xl dark:border-slate-800"
+                className="w-64 h-64 object-cover rounded-full border-4 border-white shadow-2xl dark:border-slate-800 mt-8"
 
                 initial={{ opacity: 0, scale: 0.9 }}
 
