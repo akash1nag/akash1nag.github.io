@@ -354,13 +354,13 @@ export default function QuantumJourneyHero() {
 
             <Compass className="h-5 w-5" aria-hidden="true" />
 
-            <span>Akash • Journey</span>
+            <span>Akash</span>
 
           </div>
 
           <div className="flex items-center gap-3 text-sm">
 
-            <a href="#journey" className="opacity-80 hover:opacity-100 focus:underline">Journey</a>
+            <a href="#About" className="opacity-80 hover:opacity-100 focus:underline">About</a>
 
             <a href="#work" className="opacity-80 hover:opacity-100 focus:underline">Work</a>
 
@@ -456,7 +456,7 @@ export default function QuantumJourneyHero() {
 
               <motion.img
 
-                src="/images/profile.jpg"
+                src="/DSCF2112.jpg"
 
                 alt="Akash profile photo"
 
@@ -538,8 +538,8 @@ export default function QuantumJourneyHero() {
 
         {/* JOURNEY ROAD WITH MILESTONES */}
 
-        <section id="journey" className="mx-auto max-w-6xl px-6 pb-20">
-    <h2 className="text-2xl font-semibold mb-6">Journey</h2>
+        <section id="About" className="mx-auto max-w-6xl px-6 pb-20">
+    <h2 className="text-2xl font-semibold mb-6">About</h2>
     <div className="grid gap-10">
         {milestones.map((m, _) => (  // <-- The fix is here
             <Milestone key={m.title} {...m} />
