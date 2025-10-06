@@ -220,7 +220,7 @@ export default function QuantumJourneyHero() {
 
   const { theme, toggle } = useTheme();
 
-  const [activeIdx, setActiveIdx] = React.useState<number | null>(null);
+  React.useState<number | null>(null);
 
 
 
@@ -539,20 +539,13 @@ export default function QuantumJourneyHero() {
         {/* JOURNEY ROAD WITH MILESTONES */}
 
         <section id="journey" className="mx-auto max-w-6xl px-6 pb-20">
-
-          <h2 className="text-2xl font-semibold mb-6">Journey</h2>
-
-          <div className="grid gap-10">
-
-              {milestones.map((m, i) => (
-
-                <Milestone key={m.title} {...m} />
-
-              ))}
-
-            </div>
-
-        </section>
+    <h2 className="text-2xl font-semibold mb-6">Journey</h2>
+    <div className="grid gap-10">
+        {milestones.map((m, _) => (  // <-- The fix is here
+            <Milestone key={m.title} {...m} />
+        ))}
+    </div>
+</section>
 
 
 
