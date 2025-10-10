@@ -398,13 +398,13 @@ export default function QuantumJourneyHero() {
 
               <h1 className="text-4xl md:text-5xl font-bold leading-tight">
 
-                A Road Through <span className="text-indigo-700 dark:text-indigo-300">Quantum</span>
+                Akash nag <span className="text-indigo-700 dark:text-indigo-300">Oruganti</span>
 
               </h1>
 
               <p className="mt-4 font-medium px-3 py-2 rounded bg-white text-black dark:bg-slate-900 dark:text-slate-300">
 
-                Quantum information theorist with an integrated BSc+MSc in Physics and a PhD in CV-QKD. This page highlights key waypoints and selected work.
+                Welcome to my corner of the internet. If you are here to find a data-focused researcher, you have come to the right place. If you are an old friend wondering what I have been up to, I am glad you are here. Get in touch with me if you find time.
 
               </p>
 
@@ -460,7 +460,7 @@ export default function QuantumJourneyHero() {
 
                 alt="Akash profile photo"
 
-                className="w-70 h-70 object-cover rounded-full border-4 border-white shadow-2xl dark:border-slate-800 mt-8"
+                className="w-68 h-68 object-cover rounded-full border-4 border-white shadow-2xl dark:border-slate-800 mt-7"
 
                 initial={{ opacity: 0, scale: 1 }}
 
