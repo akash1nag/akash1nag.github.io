@@ -403,7 +403,7 @@ const shellBg =
               </h1>
 
               
- <p className="mt-4 font-medium text-gray-900 dark:text-gray-600">
+ <p className="mt-4 font-medium">
                 Welcome to my corner of the internet. If you are here to find a data-focused researcher, you have come to the right place. If you are an old friend wondering what I have been up to, I am glad you are here. Get in touch with me if you find time.
             </p>
 
