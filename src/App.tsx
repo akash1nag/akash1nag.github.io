@@ -403,7 +403,7 @@ export default function QuantumJourneyHero() {
               </h1>
 
               
-<p className="mt-4 font-medium text-gray-1000 dark:text-gray-50">
+<p className="mt-4 font-medium text-gray-1000 dark:text-gray-500">
                 Welcome to my corner of the internet. If you are here to find a data-focused researcher, you have come to the right place. If you are an old friend wondering what I have been up to, I am glad you are here. Get in touch with me if you find time.
             </p>
 
