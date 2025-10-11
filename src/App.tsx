@@ -402,11 +402,10 @@ export default function QuantumJourneyHero() {
 
               </h1>
 
-              <p className="mt-4 font-medium px-3 py-2 rounded bg-white text-black dark:bg-slate-900 dark:text-slate-300">
-
-                Welcome to my corner of the internet. If you are here to find a data-focused researcher, you have come to the right place. If you are an old friend wondering what I have been up to, I am glad you are here. Get in touch with me if you find time.
-
-              </p>
+              
+ <p className="mt-4 font-medium py-2 text-black dark:text-white">
+                Welcome to my corner of the internet. If you are here to find a data-focused researcher, you have come to the right place. If you are an old friend wondering what I have been up to, I am glad you are here. Get in touch with me if you find time.
+            </p>
 
               <div className="mt-6 flex flex-wrap gap-2 bg-white/80 px-3 py-2 rounded dark:bg-transparent">
 
@@ -460,7 +459,7 @@ export default function QuantumJourneyHero() {
 
                 alt="Akash profile photo"
 
-                className="w-68 h-68 object-cover rounded-full border-4 border-white shadow-2xl dark:border-slate-800 mt-7"
+                className="w-65 h-65 object-cover rounded-full border-4 border-white shadow-2xl dark:border-slate-800 mt-7"
 
                 initial={{ opacity: 0, scale: 1 }}
 
