@@ -330,15 +330,13 @@ export default function QuantumJourneyHero() {
 
 
 
-  const shellBg =
+  
 
-    theme === "dark"
-
-      ? "bg-gradient-to-br from-slate-900 via-slate-950 to-black text-slate-100"
-
-      : "bg-gradient-to-br from-indigo-50 via-white to-emerald-50 text-slate-900";
-
-
+// Inside src/App.tsx, around line 168
+const shellBg =
+  theme === "dark"
+    ? "bg-gradient-to-br from-slate-900 via-slate-950 to-black" // Removed text-slate-100
+    : "bg-gradient-to-br from-indigo-50 via-white to-emerald-50"; // Removed text-slate-900
 
   return (
 
@@ -403,7 +401,7 @@ export default function QuantumJourneyHero() {
               </h1>
 
               
-<p className="mt-4 font-medium text-gray-700 dark:text-gray-500">
+ <p className="mt-4 font-medium text-gray-900 dark:text-gray-100">
                 Welcome to my corner of the internet. If you are here to find a data-focused researcher, you have come to the right place. If you are an old friend wondering what I have been up to, I am glad you are here. Get in touch with me if you find time.
             </p>
 
