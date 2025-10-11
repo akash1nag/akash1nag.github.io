@@ -483,55 +483,27 @@ const shellBg =
 
         {/* HOW I WORK */}
 
-        <section id="approach" className="mx-auto max-w-6xl px-6 pb-16">
-
-          <h2 className="text-2xl font-semibold mb-3">How I Work</h2>
-
-          <div className="max-w-4xl rounded-2xl border bg-white/95 px-5 py-4 shadow-sm dark:bg-slate-900/80 dark:border-slate-800"><p className="text-sm md:text-base text-slate-900 dark:text-slate-300">
-
-            Answers are cheap; good questions aren’t. My focus is framing the problem well, decomposing it cleanly, and
-
-            testing solutions until they break—so what remains is robust. That’s how I ship work I can defend.
-
-          </p></div>
-
-          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-
-            <div className="rounded-2xl border bg-white p-4 dark:bg-slate-900 dark:border-slate-800">
-
-              <div className="flex items-center gap-2 font-medium text-slate-900 dark:text-slate-100"><HelpCircle className="h-4 w-4"/> Ask sharper questions</div>
-
-              <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Clarify constraints, success criteria, and unknowns before touching code or math.</p>
-
-            </div>
-
-            <div className="rounded-2xl border bg-white p-4 dark:bg-slate-900 dark:border-slate-800">
-
-              <div className="flex items-center gap-2 font-medium text-slate-900 dark:text-slate-100"><ListTree className="h-4 w-4"/> Decompose → define</div>
-
-              <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Structure problems into orthogonal components with explicit interfaces.</p>
-
-            </div>
-
-            <div className="rounded-2xl border bg-white p-4 dark:bg-slate-900 dark:border-slate-800">
-
-              <div className="flex items-center gap-2 font-medium text-slate-900 dark:text-slate-100"><FlaskConical className="h-4 w-4"/> Hypothesize → test</div>
-
-              <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Write falsifiable checks: invariants, back‑tests, sanity bounds, adversarial cases.</p>
-
-            </div>
-
-            <div className="rounded-2xl border bg-white p-4 dark:bg-slate-900 dark:border-slate-800">
-
-              <div className="flex items-center gap-2 font-medium text-slate-900 dark:text-slate-100"><ShieldCheck className="h-4 w-4"/> Robustness first</div>
-
-              <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Prefer stable, explainable wins over brittle SOTA—document trade‑offs and failures.</p>
-
-            </div>
-
-          </div>
-
-        </section>
+         <section id="approach" className="mx-auto max-w-6xl px-6 pb-16">
+          <h2 className="text-2xl font-semibold mb-6">My Research Focus</h2>
+          {/* Using a text block that adapts to the theme colors */}
+          <div className="max-w-4xl space-y-5 text-lg text-slate-700 dark:text-slate-300">
+            <p>
+              I’m a quantum information theorist who enjoys turning messy questions into precise models and testable claims. Most of my work sits in **continuous-variable QKD**, where multivariate **Gaussian structure**, covariance modelling, and information-theoretic reasoning are everyday tools rather than buzzwords. My data toolkit includes **stochastic modelling** and coupled stochastic differential equations with linear-stability analysis, **optimisation under constraints**, and **Monte Carlo methods** for model validation, stress-testing, and uncertainty propagation via resampling and simulation. I work in **Mathematica and Python**, moving between symbolic derivations and numerical experiments as needed.
+            </p>
+            <p>
+              **Information theory** guides a lot of my choices: **Shannon entropy** and **mutual information** for signal content; **Fisher information** and **Cramér–Rao bounds** for estimator quality; **KL divergence** and related f-divergences for model comparison; **Entropy rate** for time-series; and the **data-processing inequality** and the **information-bottleneck** view for feature design. These tools help me judge what the data can actually support.
+            </p>
+            <p>
+              I like **proof by attempted destruction**. Before I trust a result I try to break it. That means ablation studies, **back-tests**, **bootstrap intervals**, and clear accounting of noise sources. In quantum-crypto work this shows up as finite-size analyses with confidence intervals that hold outside the asymptotic limit. In applied projects it means reporting uncertainty with the same prominence as point estimates.
+            </p>
+            <p>
+              Right now I am building a stock-selection feature space that mixes dynamical-systems intuition with information-theoretic criteria. The plan is simple. Design interpretable features. Test them with falsification-minded checks. Keep what survives.
+            </p>
+            <p className="font-semibold text-xl border-t pt-4 mt-6 border-slate-200 dark:border-slate-700">
+              **If you are skimming:** I bridge rigorous modelling with practical validation. Give me a noisy dataset or a hard constraint and I will propose a model, quantify uncertainty, and show where it holds and where it does not.
+            </p>
+          </div>
+        </section>
 
 
 
