@@ -459,7 +459,7 @@ const shellBg =
 
                 alt="Akash profile photo"
 
-                className="w-64 h-64 object-cover rounded-full border-4 border-white shadow-2xl dark:border-slate-800 mt-7"
+                className="w-64 h-65 object-cover rounded-full border-4 border-white shadow-2xl dark:border-slate-800 mt-7"
 
                 initial={{ opacity: 0, scale: 1 }}
 
