@@ -332,11 +332,13 @@ export default function QuantumJourneyHero() {
 
   
 
-// Inside src/App.tsx, around line 168
 const shellBg =
-  theme === "dark"
-    ? "bg-gradient-to-br from-slate-900 via-slate-950 to-black" // Removed text-slate-100
-    : "bg-gradient-to-br from-indigo-50 via-white to-emerald-50"; // Removed text-slate-900
+
+    theme === "dark"
+
+      ? "bg-gradient-to-br from-slate-900 via-slate-950 to-black text-slate-100"
+
+      : "bg-gradient-to-br from-indigo-50 via-white to-emerald-50 text-slate-900";
 
   return (
 
