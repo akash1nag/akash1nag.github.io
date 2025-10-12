@@ -240,7 +240,7 @@ const workData: Work[] = [
     s: "This paper studies a three user conference key protocol built from CV dual rail cluster states, examining its six mode construction, security, and key capacity under finite size and imperfect squeezing.",
     tags: ["CV-QKD", "Security Proofs","Multiuser","graph state","Quantum Networks","QPON"],
     doi: "https://doi.org/10.1103/vsqj-ndkn",
-    pdfLink: "/pdfs/Multiuser_QKD_quotient_graph_state.pdf", // Place your PDF in the project's 'public/pdfs' folder
+    pdfLink: "/Multiuser_QKD_quotient_graph_state.pdf", // Place your PDF in the project's 'public/pdfs' folder
   },
   {
     k: "p2",
@@ -248,7 +248,7 @@ const workData: Work[] = [
     s: "This paper analyses CVQKD with coherent states under heterodyne phase imbalance, providing a finite size security proof, a post processing fix, and experimental validation on integrated photonic receivers.",
     tags: ["Finite-size Security", "Experimental imperfections","CV-QKD"],
     doi: "https://doi.org/10.1364/PRJ.559136",
-    pdfLink: "/pdfs/imperfect-heterodyne-paper2.pdf",
+    pdfLink: "/imperfect-heterodyne-paper2.pdf",
   },
   {
     k: "p3",
@@ -256,7 +256,7 @@ const workData: Work[] = [
     s: "This paper studies how noisy squeezing affects the security and key rates of squeezed state CV QKD across fibre and free space, under trusted and untrusted noise, in both asymptotic and finite size regimes.",
     tags: ["Finite-size Security", "Experimental imperfections","CV-QKD"],
     doi: "https://doi.org/10.1088/2058-9565/ada9c4",
-    pdfLink: "/pdfs/noisy-squeezed-qkd.pdf",
+    pdfLink: "/noisy-squeezed-qkd.pdf",
   },
   {
     k: "t1",
@@ -264,7 +264,7 @@ const workData: Work[] = [
     s: "This thesis analyses actively phase locked optical parametric oscillators, extends linearisation to treat limit cycle dynamics via a Gaussian mixture along the cycle, and shows they generate strong intracavity entanglement even during periodic motion.",
     tags: ["Open quantum system", "linear stability analysis", "Fokker Planck equation"],
     doi: "https://www.maot.studium.fau.de/achievements/masters-theses/theses-2019/#Oruganti", // Link to university repository or similar
-    pdfLink: "/pdfs/master-thesis.pdf",
+    pdfLink: "/master-thesis.pdf",
   },
 ];
 
@@ -531,7 +531,7 @@ const shellBg =
           <h2 className="text-2xl font-semibold mb-6">Who Am I?</h2>
           
           {/* Using a text block that adapts to the theme colors */}
-          <div className="max-w-4xl space-y-5 text-lg text-slate-700 dark:text-slate-300">
+          <div className="max-w-4xl space-y-5 text-lg">
             <p>
               I am a quantum information theorist who enjoys turning messy questions into precise models and testable claims. Answers grow cheaper every day, but meaningful questions do not. I give more weight to the question than to the answer. Most of the work is in framing the right question. Once that is clear the answer tends to follow.
             </p>
