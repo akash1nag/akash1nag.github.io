@@ -2,9 +2,9 @@ import React from "react";
 
 import { motion, AnimatePresence } from "framer-motion";
 
-import { Compass, Github, Mail, Moon, Sun, HelpCircle, ListTree, FlaskConical, ShieldCheck } from "lucide-react";
+//import { Compass, Github, Mail, Moon, Sun, HelpCircle, ListTree, FlaskConical, ShieldCheck } from "lucide-react";
 
-
+import { Compass, Github, Mail, Moon, Sun } from "lucide-react";
 
 // --------------------------------------------------
 
@@ -481,26 +481,32 @@ const shellBg =
 
 
 
-        {/* HOW I WORK */}
-
-         <section id="approach" className="mx-auto max-w-6xl px-6 pb-16">
-          <h2 className="text-2xl font-semibold mb-6">My Research Focus</h2>
+       {/* WHO AM I? -> CONTEXTUAL TEXT WITH CALLOUTS */}
+        <section id="who-am-i" className="mx-auto max-w-6xl px-6 pb-16">
+          {/* New Title */}
+          <h2 className="text-2xl font-semibold mb-6">Who Am I?</h2>
+          
           {/* Using a text block that adapts to the theme colors */}
           <div className="max-w-4xl space-y-5 text-lg text-slate-700 dark:text-slate-300">
             <p>
-              I’m a quantum information theorist who enjoys turning messy questions into precise models and testable claims. Most of my work sits in **continuous-variable QKD**, where multivariate **Gaussian structure**, covariance modelling, and information-theoretic reasoning are everyday tools rather than buzzwords. My data toolkit includes **stochastic modelling** and coupled stochastic differential equations with linear-stability analysis, **optimisation under constraints**, and **Monte Carlo methods** for model validation, stress-testing, and uncertainty propagation via resampling and simulation. I work in **Mathematica and Python**, moving between symbolic derivations and numerical experiments as needed.
+              I am a quantum information theorist who enjoys turning messy questions into precise models and testable claims. Answers grow cheaper every day, but meaningful questions do not. I give more weight to the question than to the answer. Most of the work is in framing the right question. Once that is clear the answer tends to follow.
             </p>
             <p>
-              **Information theory** guides a lot of my choices: **Shannon entropy** and **mutual information** for signal content; **Fisher information** and **Cramér–Rao bounds** for estimator quality; **KL divergence** and related f-divergences for model comparison; **Entropy rate** for time-series; and the **data-processing inequality** and the **information-bottleneck** view for feature design. These tools help me judge what the data can actually support.
+              Most of my <a href="#work" className="font-semibold text-indigo-700 hover:underline dark:text-indigo-300">work</a> sits in continuous variable quantum key distribution, where multivariate Gaussian structure, careful covariance modelling and information theoretic reasoning are everyday tools rather than buzzwords. My toolkit includes stochastic modelling and <a href="#work" className="font-semibold text-indigo-700 hover:underline dark:text-indigo-300">coupled stochastic differential equations with linear stability analysis</a>, optimisation under constraints and Monte Carlo methods for model validation, stress testing and uncertainty propagation through resampling and simulation. I work in <strong className="font-semibold">Mathematica</strong> and <strong className="font-semibold">Python</strong>, moving between symbolic derivations and numerical experiments as needed.
             </p>
             <p>
-              I like **proof by attempted destruction**. Before I trust a result I try to break it. That means ablation studies, **back-tests**, **bootstrap intervals**, and clear accounting of noise sources. In quantum-crypto work this shows up as finite-size analyses with confidence intervals that hold outside the asymptotic limit. In applied projects it means reporting uncertainty with the same prominence as point estimates.
+              Information theory guides many of my choices. I use <strong className="font-semibold">Shannon entropy</strong> and <strong className="font-semibold">mutual information</strong> to think about signal content. I rely on <strong className="font-semibold">Fisher information</strong> and <strong className="font-semibold">Cramér Rao bounds</strong> to judge estimator quality. I compare models with <strong className="font-semibold">Kullback Leibler divergence</strong> and related f divergences. For time series I look at <strong className="font-semibold">entropy rate</strong>. For feature design I lean on the <strong className="font-semibold">data processing inequality</strong> and the <strong className="font-semibold">information bottleneck view</strong>. These tools help me decide what the data can actually support.
             </p>
             <p>
-              Right now I am building a stock-selection feature space that mixes dynamical-systems intuition with information-theoretic criteria. The plan is simple. Design interpretable features. Test them with falsification-minded checks. Keep what survives.
+              I like <strong className="font-semibold">proof by attempted destruction</strong>. Before I trust a result I try to break it. I run ablation studies and <strong className="font-semibold">back tests</strong>, use <strong className="font-semibold">bootstrap intervals</strong> and keep a clear account of noise sources. In quantum crypto this shows up as <strong className="font-semibold">finite size analyses</strong> with confidence intervals that hold outside the asymptotic limit. In applied projects it means reporting uncertainty with the same prominence as point estimates.
             </p>
+            <p>
+              Right now I am building a stock selection feature space that blends dynamical systems intuition with information theoretic criteria. The plan is simple. Design interpretable features. Test them with falsification minded checks. Keep what survives. Before any modelling I write an exhaustive list of the conditions under which the data was obtained and the assumptions those imply. The vetted features then feed machine learning models such as logistic regression, random forests, gradient boosted trees, and small neural networks.
+            </p>
+            
+            {/* The skimming part is styled to stand out */}
             <p className="font-semibold text-xl border-t pt-4 mt-6 border-slate-200 dark:border-slate-700">
-              **If you are skimming:** I bridge rigorous modelling with practical validation. Give me a noisy dataset or a hard constraint and I will propose a model, quantify uncertainty, and show where it holds and where it does not.
+              <strong className="font-extrabold">If you are skimming:</strong> I bridge rigorous modelling with practical validation. Give me a noisy dataset or a hard constraint and I will propose a model, quantify uncertainty, and show where it holds and where it does not.
             </p>
           </div>
         </section>
