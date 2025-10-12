@@ -570,20 +570,22 @@ const shellBg =
 
 
 
-         {/* WORK SHOWCASE - NOW DUAL LINKED */}
+         {/* WORK SHOWCASE - ELEGANT 2x2 GRID */}
         <section id="work" className="mx-auto max-w-6xl px-6 pb-16">
           <h2 className="text-2xl font-semibold mb-4">Selected Work</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* CRITICAL CHANGE: Using 2 columns on medium/large screens for a balanced 2x2 grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
             {workData.map((w) => (
               <motion.div
                 key={w.k}
                 whileHover={{ y: -2 }}
-                className="p-5 border rounded-xl shadow-lg bg-white/70 backdrop-blur hover:shadow-xl transition-shadow dark:bg-slate-800/70 dark:border-slate-700"
+                // Added h-full to ensure cards have the same height in the grid row
+                className="p-5 border rounded-xl shadow-lg bg-white/70 backdrop-blur hover:shadow-xl transition-shadow dark:bg-slate-800/70 dark:border-slate-700 h-full flex flex-col" 
               >
                 {/* Title and Subtitle */}
                 <div className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">{w.t}</div>
-                <div className="text-sm text-slate-700 dark:text-slate-300">{w.s}</div>
+                <div className="text-sm text-slate-700 dark:text-slate-300 flex-grow">{w.s}</div> {/* flex-grow helps push buttons down */}
 
                 {/* Tags */}
                 <div className="mt-4 flex flex-wrap gap-2">
@@ -622,6 +624,7 @@ const shellBg =
             ))}
           </div>
         </section>
+
 
 
 
