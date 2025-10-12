@@ -206,7 +206,16 @@ const Milestone = ({ title, subtitle, year, img, side = "left", details, forceOp
 
 
 
+// ADD this interface definition near the existing MilestoneProps interface (around line 99)
 
+interface Work {
+  k: string; // key
+  t: string; // title
+  s: string; // subtitle
+  tags: string[]; // for the tags display
+  doi: string; // official journal link
+  pdfLink: string; // direct pdf file path
+}
 
 // --------------------------------------------------
 
@@ -222,15 +231,50 @@ export default function QuantumJourneyHero() {
 
   React.useState<number | null>(null);
 
+// ADD this array definition above the QuantumJourneyHero function's return statement (around line 200)
 
+const workData: Work[] = [
+  {
+    k: "p1",
+    t: "Multiuser quantum key distribution using quotient graph states derived from continuous-variable dual-rail cluster states",
+    s: "This paper studies a three user conference key protocol built from CV dual rail cluster states, examining its six mode construction, security, and key capacity under finite size and imperfect squeezing.",
+    tags: ["CV-QKD", "Security Proofs","Multiuser","graph state","Quantum Networks","QPON"],
+    doi: "https://doi.org/10.1103/vsqj-ndkn",
+    pdfLink: "/pdfs/Multiuser_QKD_quotient_graph_state.pdf", // Place your PDF in the project's 'public/pdfs' folder
+  },
+  {
+    k: "p2",
+    t: "Finite-size security of continuous-variable quantum key distribution with imperfect heterodyne measurement",
+    s: "This paper analyses CVQKD with coherent states under heterodyne phase imbalance, providing a finite size security proof, a post processing fix, and experimental validation on integrated photonic receivers.",
+    tags: ["Finite-size Security", "Experimental imperfections","CV-QKD"],
+    doi: "https://doi.org/10.1364/PRJ.559136",
+    pdfLink: "/pdfs/imperfect-heterodyne-paper2.pdf",
+  },
+  {
+    k: "p3",
+    t: "Continuous-variable quantum key distribution with noisy squeezed states",
+    s: "This paper studies how noisy squeezing affects the security and key rates of squeezed state CV QKD across fibre and free space, under trusted and untrusted noise, in both asymptotic and finite size regimes.",
+    tags: ["Finite-size Security", "Experimental imperfections","CV-QKD"],
+    doi: "https://doi.org/10.1088/2058-9565/ada9c4",
+    pdfLink: "/pdfs/noisy-squeezed-qkd.pdf",
+  },
+  {
+    k: "t1",
+    t: "Master Thesis: Quantum theory of actively-phase-locked optical parametric oscillators subject to limit-cycle motion",
+    s: "This thesis analyses actively phase locked optical parametric oscillators, extends linearisation to treat limit cycle dynamics via a Gaussian mixture along the cycle, and shows they generate strong intracavity entanglement even during periodic motion.",
+    tags: ["Open quantum system", "linear stability analysis", "Fokker Planck equation"],
+    doi: "https://www.maot.studium.fau.de/achievements/masters-theses/theses-2019/#Oruganti", // Link to university repository or similar
+    pdfLink: "/pdfs/master-thesis.pdf",
+  },
+];
 
   const milestones: MilestoneProps[] = [
 
     {
 
-      year: "2016–2021",
+      year: "2019–2025",
 
-      title: "Integrated BSc + MSc in Physics",
+      title: "PhD: MULTIUSER QUANTUM COMMUNICATION ",
 
       subtitle: "Foundations in quantum mechanics, statistics, and modelling",
 
@@ -240,7 +284,7 @@ export default function QuantumJourneyHero() {
 
       details:
 
-        "Coursework in QM, stat mech, stochastic processes; first exposure to information theory and numerical modelling. Built comfort with linear algebra and probability that later fed into Gaussian-state work.",
+        "Performed therotical secuity analysis, ",
 
       anchorId: "ms-0",
 
@@ -526,51 +570,58 @@ const shellBg =
 
 
 
-        {/* WORK SHOWCASE */}
+         {/* WORK SHOWCASE - NOW DUAL LINKED */}
+        <section id="work" className="mx-auto max-w-6xl px-6 pb-16">
+          <h2 className="text-2xl font-semibold mb-4">Selected Work</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {workData.map((w) => (
+              <motion.div
+                key={w.k}
+                whileHover={{ y: -2 }}
+                className="p-5 border rounded-xl shadow-lg bg-white/70 backdrop-blur hover:shadow-xl transition-shadow dark:bg-slate-800/70 dark:border-slate-700"
+              >
+                {/* Title and Subtitle */}
+                <div className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">{w.t}</div>
+                <div className="text-sm text-slate-700 dark:text-slate-300">{w.s}</div>
 
-        <section id="work" className="mx-auto max-w-6xl px-6 pb-16">
+                {/* Tags */}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {w.tags.map((tag) => (
+                    <span key={tag} className="px-2 py-0.5 rounded-full bg-indigo-500 text-white text-xs">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
 
-          <h2 className="text-2xl font-semibold mb-4">Selected Work</h2>
+                {/* DUAL LINK BUTTONS */}
+                <div className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700 flex flex-wrap gap-3">
+                  {/* Link 1: Direct PDF Access/Download */}
+                  <a
+                    href={w.pdfLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition flex items-center"
+                    title={`View or download the full PDF for ${w.t}`}
+                  >
+                    View / Download PDF
+                  </a>
 
-          <div className="grid md:grid-cols-3 gap-4">
-
-            {[
-
-              { k: "cvqkd", t: "CV-QKD with Squeezed States", s: "QKD protocols, imperfections, key rates" },
-
-              { k: "finite", t: "Finite-Size Security", s: "Composable security, smooth entropies" },
-
-              { k: "qpON", t: "Quantum PON Networks", s: "Downstream multi-user access" },
-
-            ].map((w) => (
-
-              <motion.a
-
-                key={w.k}
-
-                href="#"
-
-                whileHover={{ y: -4 }}
-
-                className="rounded-2xl border bg-white p-4 shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-indigo-300 dark:bg-slate-900 dark:border-slate-800 dark:focus:ring-indigo-500/40"
-
-              >
-
-                <div className="text-sm text-slate-500 dark:text-slate-400">Research</div>
-
-                <div className="font-semibold text-slate-900 dark:text-slate-100">{w.t}</div>
-
-                <div className="text-sm text-slate-700 dark:text-slate-300">{w.s}</div>
-
-                <div className="mt-3 text-xs text-slate-500">Read more →</div>
-
-              </motion.a>
-
-            ))}
-
-          </div>
-
-        </section>
+                  {/* Link 2: Official Journal DOI */}
+                  <a
+                    href={w.doi}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded border border-slate-300 text-slate-800 text-sm font-medium hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700 transition flex items-center"
+                    title={`Open the official journal page (DOI) for ${w.t}`}
+                  >
+                    Official DOI
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
 
 
 
