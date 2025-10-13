@@ -102,19 +102,19 @@ interface MilestoneProps {
 
 // REPLACE the existing Milestone function entirely (starting around line 115)
 
-// REPLACE the existing Milestone function entirely (starting around line 115)
+// REPLACE the existing Milestone function entirely (starting around Line 123)
 const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, affiliations }: MilestoneProps) => {
   const [open, setOpen] = React.useState(false);
 
-  // Class to push the card left or right, creating the staggered look.
+  // Class to push the card left or right, creating the desired staggered look.
   const mainCardStyle = side === "left"
-    ? "md:mr-24" // For left-aligned text, push it right (i.e., the card starts further from the left edge)
-    : "md:ml-24"; // For right-aligned text, push it left (i.e., the card starts further from the left edge)
+    ? "md:mr-24" // For left-aligned text, push it right (away from the center)
+    : "md:ml-24"; // For right-aligned text, push it left (away from the center)
 
   return (
     <div
       id={anchorId}
-      // CORRECTED: Ensure the container allows the card to be justified to the end for 'right' side
+      // CRITICAL CSS FIX: Ensures the container can justify items to the end for 'right' sided cards
       className={`relative flex items-start gap-4 w-full ${side === "right" ? "md:justify-end" : "md:justify-start"}`}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
@@ -125,7 +125,7 @@ const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, af
       {/* Main Content Card - Now acts as the expandable container */}
       <motion.div
         whileHover={{ y: -2 }}
-        // CORRECTED: Use flex-none and a fixed width to ensure the staggering works correctly
+        // CRITICAL CSS FIX: Use flex-none and a fixed width to ensure the staggering works correctly on desktop
         className={`p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 flex-none w-full md:w-[480px] cursor-pointer ${mainCardStyle}`}
         onClick={() => setOpen(!open)} // Allows touch interaction on mobile
       >
@@ -137,6 +137,7 @@ const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, af
             
             {/* Affiliation names (below subtitle) */}
             <div className="mt-1 text-xs text-indigo-700 dark:text-indigo-400 font-medium">
+              {/* Renders affiliations without logos, joined by ' / ' */}
               {affiliations.map(a => a.name).join(' / ')}
             </div>
           </div>
@@ -147,7 +148,7 @@ const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, af
           </div>
         </div>
 
-        {/* EXPANDABLE DETAIL SECTION - The clean, elegant solution */}
+        {/* EXPANDABLE DETAIL SECTION */}
         <AnimatePresence>
           {open && (
             <motion.div
@@ -165,7 +166,6 @@ const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, af
     </div>
   );
 };
-
 
 // ADD this interface definition near the existing MilestoneProps interface (around line 99)
 
