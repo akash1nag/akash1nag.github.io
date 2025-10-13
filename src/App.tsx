@@ -165,7 +165,6 @@ const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, af
   );
 };
 
-
 // ADD this interface definition near the existing MilestoneProps interface (around line 99)
 
 interface Work {
@@ -533,7 +532,7 @@ const shellBg =
 
  <section id="About" className="mx-auto max-w-6xl px-6 pb-20">
     <h2 className="text-2xl font-semibold mb-6">About</h2>
-    <div className="grid gap-10">
+    <div className="flex flex-col gap-10">
         {milestones.map((m, _) => (  // <-- The fix is here
             <Milestone key={m.title} {...m} />
         ))}
