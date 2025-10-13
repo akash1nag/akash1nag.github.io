@@ -102,22 +102,33 @@ interface MilestoneProps {
 
 // REPLACE the existing Milestone function entirely (starting around line 115)
 
+// REPLACE the existing Milestone function entirely (starting around line 115)
+// Assuming you already have the affiliations logic inside this component.
+
 const Milestone = ({ title, subtitle, year, side = "left", details, forceOpen = false, anchorId, onIntent, affiliations }: MilestoneProps) => {
   const [localOpen, setLocalOpen] = React.useState(false);
   const open = forceOpen || localOpen;
 
+  // --- Calculate positioning for the detail card ---
+  // The main card is 100% wide on mobile, and centered relative to the logo on desktop.
+  // The detail card needs to appear on the side *opposite* the main text box.
+
+  const detailCardPositionClass = side === "left"
+    ? "md:right-[calc(100%+1rem)] md:left-auto" // Position detail card far to the right of the main text box
+    : "md:left-[calc(100%+1rem)] md:right-auto"; // Position detail card far to the left of the main text box
+
   return (
     <div
       id={anchorId}
-      className={`relative flex items-center gap-4 ${side === "left" ? "md:flex-row" : "md:flex-row-reverse"}`}
+      className={`relative flex items-start gap-4 ${side === "left" ? "md:flex-row" : "md:flex-row-reverse"}`}
       onMouseEnter={() => { setLocalOpen(true); onIntent?.(); }}
       onMouseLeave={() => setLocalOpen(false)}
       onFocus={() => { setLocalOpen(true); onIntent?.(); }}
       onBlur={() => setLocalOpen(false)}
     >
       
-      {/* Logos/Affiliations Container (REPLACES Single Image) */}
-      <div className="flex flex-col gap-2 p-2 w-28 h-28 md:w-32 md:h-32 justify-center items-center border rounded-2xl shadow border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800">
+      {/* Logos/Affiliations Container */}
+      <div className="flex flex-col gap-2 p-2 w-28 h-28 md:w-32 md:h-32 justify-center items-center border rounded-2xl shadow border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 flex-shrink-0">
         {affiliations.map((affil) => (
           <motion.img
             key={affil.name}
@@ -126,16 +137,17 @@ const Milestone = ({ title, subtitle, year, side = "left", details, forceOpen = 
             decoding="async"
             src={affil.logo}
             alt={affil.name}
-            // Adjust size based on number of affiliations
             className={`object-contain ${affiliations.length > 1 ? "max-h-12 w-auto" : "max-h-20 w-auto"}`}
           />
         ))}
       </div>
 
 
+      {/* Main Content Card */}
       <motion.div
         whileHover={{ y: -2 }}
-        className="p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700"
+        // Added flex-grow to make sure the card takes up all remaining space horizontally
+        className="p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 flex-grow"
       >
         <div className="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">{year}</div>
         <div className="font-semibold text-slate-900 dark:text-slate-100">{title}</div>
@@ -148,7 +160,7 @@ const Milestone = ({ title, subtitle, year, side = "left", details, forceOpen = 
       </motion.div>
 
 
-      {/* Hover card */}
+      {/* Hover card (NEW POSITIONING) */}
       <AnimatePresence>
         {open && details && (
           <motion.div
@@ -158,7 +170,9 @@ const Milestone = ({ title, subtitle, year, side = "left", details, forceOpen = 
             transition={{ type: "spring", stiffness: 380, damping: 30 }}
             role="dialog"
             aria-label={`${title} details`}
-            className={`absolute ${side === "left" ? "md:left-40" : "md:right-40"} left-0 right-0 md:w-[28rem] z-20 mt-2 md:mt-0`}
+            // Use absolute positioning with dynamic left/right based on side,
+            // and set width to be predictable and wide enough.
+            className={`absolute ${detailCardPositionClass} z-20 top-0 mt-0 w-80 md:w-[32rem]`}
           >
             <div className="rounded-2xl border shadow-lg p-4 bg-white/95 dark:bg-slate-900/95 dark:border-slate-700">
               <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-200">{details}</p>
@@ -233,61 +247,62 @@ const workData: Work[] = [
   },
 ];
 
-  // REPLACE the existing 'milestones' array entirely (around line 208)
+
+
 
 const milestones: MilestoneProps[] = [
   {
-    year: "2016–2021",
-    title: "Integrated Master’s (BSc + MSc) in Physics",
-    subtitle: "Thesis: Laser-Induced Breakdown Spectroscopy (LIBS)",
-    affiliations: [
-      {
-        name: "University of Hyderabad (India)",
-        logo: "/logos/uohyd.png", // <--- PLACE YOUR LOGO HERE
-      },
-    ],
-    details:
-      "Master's thesis focused on calibrating LIBS emissions to accurately infer sodium content in materials, providing strong foundational experience in experimental data calibration and analysis.",
-    side: "left",
-    anchorId: "ms-uohyd",
-  },
-  {
-    year: "2021–2023",
-    title: "Master’s in Advanced Optical Technology",
-    subtitle: "Thesis: Quantum theory of actively-phase-locked OPOs",
-    affiliations: [
-      {
-        name: "FAU Erlangen-Nuremberg (Germany)",
-        logo: "/logos/fau.png", // <--- PLACE YOUR LOGO HERE
-      },
-      {
-        name: "Max Planck Institute for Science of Light",
-        logo: "/logos/mpl.png", // <--- PLACE YOUR LOGO HERE
-      },
-    ],
-    details:
-      "Focused on open quantum systems and limit-cycle dynamics. Work done at Max Planck Institute provided deep insight into Gaussian state analysis, which is crucial for my later CV-QKD work.",
-    side: "right",
-    anchorId: "ms-fau",
-  },
-  {
-    year: "2023–2025",
+    year: "2019–2025",
     title: "Ph.D. in Multiuser Quantum Communications",
     subtitle: "Research in CV-QKD, Composable Security, and Network Architectures",
     affiliations: [
       {
         name: "Palacký University (Czechia)",
-        logo: "/logos/upol.png", // <--- PLACE YOUR LOGO HERE
+        logo: "/logos/upol.png", 
       },
       {
         name: "DTU Technical University of Denmark (Experimental Collaboration)",
-        logo: "/logos/dtu.png", // <--- PLACE YOUR LOGO HERE
+        logo: "/logos/dtu.png", 
       },
     ],
     details:
       "Core research involved key-rate derivations for multi-user CV-QKD protocols and extensive collaborative experimental validation with the DTU group.",
-    side: "left",
+    side: "left", // PhD is on the left side
     anchorId: "ms-upol",
+  },
+  {
+    year: "2016–2019",
+    title: "Master’s in Advanced Optical Technology",
+    subtitle: "Thesis: Quantum theory of actively-phase-locked OPOs",
+    affiliations: [
+      {
+        name: "FAU Erlangen-Nuremberg (Germany)",
+        logo: "/logos/fau.png", 
+      },
+      {
+        name: "Max Planck Institute for Science of Light",
+        logo: "/logos/mpl.png", 
+      },
+    ],
+    details:
+      "Focused on open quantum systems and limit-cycle dynamics. Work done at Max Planck Institute provided deep insight into Gaussian state analysis, which is crucial for my later CV-QKD work.",
+    side: "right", // Master's (Germany) is on the right side
+    anchorId: "ms-fau",
+  },
+  {
+    year: "2010–2016",
+    title: "Integrated Master’s (BSc + MSc) in Physics",
+    subtitle: "Thesis: Laser-Induced Breakdown Spectroscopy (LIBS)",
+    affiliations: [
+      {
+        name: "University of Hyderabad (India)",
+        logo: "/logos/uohyd.png", 
+      },
+    ],
+    details:
+      "Master's thesis focused on calibrating LIBS emissions to accurately infer sodium content in materials, providing strong foundational experience in experimental data calibration and analysis.",
+    side: "left", // Integrated Master's is on the left side
+    anchorId: "ms-uohyd",
   },
 ];
 
