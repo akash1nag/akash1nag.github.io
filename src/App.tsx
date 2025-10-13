@@ -73,21 +73,19 @@ type MilestoneSide = "left" | "right";
 
 
 interface MilestoneProps {
-  title: string;
-  subtitle: string;
-  year: string;
-  // REMOVED 'img' property here as we will use the new affiliations structure
-  side?: MilestoneSide;
-  details?: string; // extra info revealed on hover/focus
-  forceOpen?: boolean; // controlled open from roadmap beacons
-  anchorId?: string; // id for deep linking
-  onIntent?: () => void; // hover/focus intent callback
-  
-  // NEW PROPERTY: Array to hold affiliation data
-  affiliations: {
-    name: string;
-    logo: string; // Path to logo image in /public folder
-  }[];
+  title: string;
+  subtitle: string;
+  year: string;
+  // Removed 'img' property here
+  side?: MilestoneSide;
+  details: string; // Made details mandatory for the expandable section
+  forceOpen?: boolean; 
+  anchorId?: string; 
+  onIntent?: () => void;
+  // NEW PROPERTY for clean affiliations display
+  affiliations: {
+    name: string;
+  }[];
 }
 
 
@@ -166,6 +164,7 @@ const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, af
     </div>
   );
 };
+
 
 // ADD this interface definition near the existing MilestoneProps interface (around line 99)
 
