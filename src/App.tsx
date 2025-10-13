@@ -73,25 +73,21 @@ type MilestoneSide = "left" | "right";
 
 
 interface MilestoneProps {
-
-  title: string;
-
-  subtitle: string;
-
-  year: string;
-
-  img: string; // URL or /public path
-
-  side?: MilestoneSide;
-
-  details?: string; // extra info revealed on hover/focus
-
-  forceOpen?: boolean; // controlled open from roadmap beacons
-
-  anchorId?: string; // id for deep linking
-
-  onIntent?: () => void; // hover/focus intent callback
-
+  title: string;
+  subtitle: string;
+  year: string;
+  // REMOVED 'img' property here as we will use the new affiliations structure
+  side?: MilestoneSide;
+  details?: string; // extra info revealed on hover/focus
+  forceOpen?: boolean; // controlled open from roadmap beacons
+  anchorId?: string; // id for deep linking
+  onIntent?: () => void; // hover/focus intent callback
+  
+  // NEW PROPERTY: Array to hold affiliation data
+  affiliations: {
+    name: string;
+    logo: string; // Path to logo image in /public folder
+  }[];
 }
 
 
@@ -104,106 +100,75 @@ interface MilestoneProps {
 
 
 
-const Milestone = ({ title, subtitle, year, img, side = "left", details, forceOpen = false, anchorId, onIntent }: MilestoneProps) => {
+// REPLACE the existing Milestone function entirely (starting around line 115)
 
+const Milestone = ({ title, subtitle, year, side = "left", details, forceOpen = false, anchorId, onIntent, affiliations }: MilestoneProps) => {
   const [localOpen, setLocalOpen] = React.useState(false);
-
   const open = forceOpen || localOpen;
 
   return (
-
     <div
-
       id={anchorId}
-
       className={`relative flex items-center gap-4 ${side === "left" ? "md:flex-row" : "md:flex-row-reverse"}`}
-
       onMouseEnter={() => { setLocalOpen(true); onIntent?.(); }}
-
       onMouseLeave={() => setLocalOpen(false)}
-
       onFocus={() => { setLocalOpen(true); onIntent?.(); }}
-
       onBlur={() => setLocalOpen(false)}
-
     >
+      
+      {/* Logos/Affiliations Container (REPLACES Single Image) */}
+      <div className="flex flex-col gap-2 p-2 w-28 h-28 md:w-32 md:h-32 justify-center items-center border rounded-2xl shadow border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800">
+        {affiliations.map((affil) => (
+          <motion.img
+            key={affil.name}
+            whileHover={{ scale: 1.05 }}
+            loading="lazy"
+            decoding="async"
+            src={affil.logo}
+            alt={affil.name}
+            // Adjust size based on number of affiliations
+            className={`object-contain ${affiliations.length > 1 ? "max-h-12 w-auto" : "max-h-20 w-auto"}`}
+          />
+        ))}
+      </div>
 
-      <motion.img
-
-        loading="lazy"
-
-        decoding="async"
-
-        whileHover={{ scale: 1.03 }}
-
-        src={img}
-
-        alt={title}
-
-        className="w-28 h-28 md:w-32 md:h-32 object-cover rounded-2xl shadow border bg-white dark:bg-slate-800 dark:border-slate-700"
-
-      />
 
       <motion.div
-
         whileHover={{ y: -2 }}
-
         className="p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700"
-
       >
-
         <div className="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">{year}</div>
-
         <div className="font-semibold text-slate-900 dark:text-slate-100">{title}</div>
-
         <div className="text-slate-600 dark:text-slate-300 text-sm">{subtitle}</div>
-
+        
+        {/* Display Affiliation names under subtitle */}
+        <div className="mt-1 text-xs text-indigo-700 dark:text-indigo-400 font-medium">
+          {affiliations.map(a => a.name).join(' / ')}
+        </div>
       </motion.div>
 
 
-
       {/* Hover card */}
-
       <AnimatePresence>
-
         {open && details && (
-
           <motion.div
-
             initial={{ opacity: 0, y: 6 }}
-
             animate={{ opacity: 1, y: 0 }}
-
             exit={{ opacity: 0, y: 6 }}
-
             transition={{ type: "spring", stiffness: 380, damping: 30 }}
-
             role="dialog"
-
             aria-label={`${title} details`}
-
             className={`absolute ${side === "left" ? "md:left-40" : "md:right-40"} left-0 right-0 md:w-[28rem] z-20 mt-2 md:mt-0`}
-
           >
-
             <div className="rounded-2xl border shadow-lg p-4 bg-white/95 dark:bg-slate-900/95 dark:border-slate-700">
-
               <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-200">{details}</p>
-
             </div>
-
           </motion.div>
-
         )}
-
       </AnimatePresence>
-
     </div>
-
   );
-
 };
-
 
 
 // ADD this interface definition near the existing MilestoneProps interface (around line 99)
@@ -268,111 +233,63 @@ const workData: Work[] = [
   },
 ];
 
-  const milestones: MilestoneProps[] = [
+  // REPLACE the existing 'milestones' array entirely (around line 208)
 
-    {
-
-      year: "2019–2025",
-
-      title: "PhD: MULTIUSER QUANTUM COMMUNICATION ",
-
-      subtitle: "Foundations in quantum mechanics, statistics, and modelling",
-
-      img: "/images/milestones/integrated-physics.jpg",
-
-      side: "left",
-
-      details:
-
-        "Performed therotical secuity analysis, ",
-
-      anchorId: "ms-0",
-
-    },
-
-    {
-
-      year: "2019–2021",
-
-      title: "MSc: Advanced Optical Technology",
-
-      subtitle: "Thesis on open quantum systems; experimental & theoretical tools",
-
-      img: "/images/milestones/optics.jpg",
-
-      side: "right",
-
-      details:
-
-        "Studied open-system dynamics (Lindblad, QLEs), laser/optics lab skills, and noise modelling—skills that translate directly to CV-QKD channel models and parameter estimation.",
-
-      anchorId: "ms-1",
-
-    },
-
-    {
-
-      year: "2021–2025",
-
-      title: "PhD: Continuous-Variable QKD",
-
-      subtitle: "Gaussian states, finite-size effects, multi-user QPON, quotient-graph methods",
-
-      img: "/images/milestones/cvqkd.jpg",
-
-      side: "left",
-
-      details:
-
-        "Key-rate derivations under imperfections, quotient-graph CV cluster states for multi-user networks, and careful finite-size/composable security analyses.",
-
-      anchorId: "ms-2",
-
-    },
-
-    {
-
-      year: "2024–2025",
-
-      title: "Composable Security & Entropies",
-
-      subtitle: "Smooth min-/max-entropy, parameter estimation, privacy amplification",
-
-      img: "/images/milestones/security.jpg",
-
-      side: "right",
-
-      details:
-
-        "Bridged operational definitions (H_min^ε, H_max^ε) to concrete key-rate bounds with PE statistics and 2-universal hashing. Emphasis on clear ε-accounting.",
-
-      anchorId: "ms-3",
-
-    },
-
-    {
-
-      year: "2025 →",
-
-      title: "Applied Modelling & Data",
-
-      subtitle: "Time-series, factor models, risk, ML; bridging physics intuition with real systems",
-
-      img: "/images/milestones/quant.jpg",
-
-      side: "left",
-
-      details:
-
-        "Exploring stationary vs. regime-switching models, volatility clustering, and inference under noise. Translating Gaussian toolkits into market microstructure intuition.",
-
-      anchorId: "ms-4",
-
-    },
-
-  ];
-
-
+const milestones: MilestoneProps[] = [
+  {
+    year: "2016–2021",
+    title: "Integrated Master’s (BSc + MSc) in Physics",
+    subtitle: "Thesis: Laser-Induced Breakdown Spectroscopy (LIBS)",
+    affiliations: [
+      {
+        name: "University of Hyderabad (India)",
+        logo: "/logos/uohyd.png", // <--- PLACE YOUR LOGO HERE
+      },
+    ],
+    details:
+      "Master's thesis focused on calibrating LIBS emissions to accurately infer sodium content in materials, providing strong foundational experience in experimental data calibration and analysis.",
+    side: "left",
+    anchorId: "ms-uohyd",
+  },
+  {
+    year: "2021–2023",
+    title: "Master’s in Advanced Optical Technology",
+    subtitle: "Thesis: Quantum theory of actively-phase-locked OPOs",
+    affiliations: [
+      {
+        name: "FAU Erlangen-Nuremberg (Germany)",
+        logo: "/logos/fau.png", // <--- PLACE YOUR LOGO HERE
+      },
+      {
+        name: "Max Planck Institute for Science of Light",
+        logo: "/logos/mpl.png", // <--- PLACE YOUR LOGO HERE
+      },
+    ],
+    details:
+      "Focused on open quantum systems and limit-cycle dynamics. Work done at Max Planck Institute provided deep insight into Gaussian state analysis, which is crucial for my later CV-QKD work.",
+    side: "right",
+    anchorId: "ms-fau",
+  },
+  {
+    year: "2023–2025",
+    title: "Ph.D. in Multiuser Quantum Communications",
+    subtitle: "Research in CV-QKD, Composable Security, and Network Architectures",
+    affiliations: [
+      {
+        name: "Palacký University (Czechia)",
+        logo: "/logos/upol.png", // <--- PLACE YOUR LOGO HERE
+      },
+      {
+        name: "DTU Technical University of Denmark (Experimental Collaboration)",
+        logo: "/logos/dtu.png", // <--- PLACE YOUR LOGO HERE
+      },
+    ],
+    details:
+      "Core research involved key-rate derivations for multi-user CV-QKD protocols and extensive collaborative experimental validation with the DTU group.",
+    side: "left",
+    anchorId: "ms-upol",
+  },
+];
 
   
 
@@ -559,14 +476,7 @@ const shellBg =
 
         {/* JOURNEY ROAD WITH MILESTONES */}
 
-        <section id="About" className="mx-auto max-w-6xl px-6 pb-20">
-    <h2 className="text-2xl font-semibold mb-6">About</h2>
-    <div className="grid gap-10">
-        {milestones.map((m, _) => (  // <-- The fix is here
-            <Milestone key={m.title} {...m} />
-        ))}
-    </div>
-</section>
+       
 
 
 
@@ -625,7 +535,14 @@ const shellBg =
           </div>
         </section>
 
-
+ <section id="About" className="mx-auto max-w-6xl px-6 pb-20">
+    <h2 className="text-2xl font-semibold mb-6">About</h2>
+    <div className="grid gap-10">
+        {milestones.map((m, _) => (  // <-- The fix is here
+            <Milestone key={m.title} {...m} />
+        ))}
+    </div>
+</section>
 
 
         {/* CONTACT */}
