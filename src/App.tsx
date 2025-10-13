@@ -76,13 +76,14 @@ interface MilestoneProps {
   title: string;
   subtitle: string;
   year: string;
-  // Removed 'img' property here
+  img: string; // Keeping for compatibility, though unused in new component
   side?: MilestoneSide;
-  details: string; // Made details mandatory for the expandable section
-  forceOpen?: boolean; 
-  anchorId?: string; 
-  onIntent?: () => void;
-  // NEW PROPERTY for clean affiliations display
+  details?: string; // extra info revealed on hover/focus
+  forceOpen?: boolean; // controlled open from roadmap beacons
+  anchorId?: string; // id for deep linking
+  onIntent?: () => void; // Keeping for compatibility
+  
+  // NEW: Structure to match your data array
   affiliations: {
     name: string;
   }[];
@@ -100,68 +101,68 @@ interface MilestoneProps {
 
 // REPLACE the existing Milestone function entirely (starting around line 115)
 
-// REPLACE the existing Milestone function entirely (starting around Line 123)
-const Milestone = ({ title, subtitle, year, details, anchorId }: MilestoneProps) => {
-  // This version ignores the unused 'img' and 'side' props to fix the layout.
-  
-  const [open, setOpen] = React.useState(false);
+const Milestone = ({ title, subtitle, year, details, anchorId, affiliations }: MilestoneProps) => {
+  const [open, setOpen] = React.useState(false);
+  
+  // Joins the affiliation names with ' / '
+  const affiliationNames = affiliations?.map(a => a.name).join(' / ') || '';
 
-  return (
-    <div
-      id={anchorId}
-      // CRITICAL FIX: Ensures the container takes full width (w-full) for vertical alignment.
-      className={`relative flex items-start w-full`}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-      onFocus={() => setOpen(true)}
-      onBlur={() => setOpen(false)}
-    >
-      
-      {/* Main Content Card - Now acts as the full-width container */}
-      <motion.div
-        whileHover={{ y: -2 }}
-        // CRITICAL FIX: Forces full width (w-full) on all screens and removes all offsets.
-        className={`p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 w-full cursor-pointer`}
-        onClick={() => setOpen(!open)} // Allows touch interaction on mobile
-      >
-        <div className="flex justify-between items-start">
-          {/* Title and Subtitle Group */}
-          <div>
-            <div className="font-semibold text-slate-900 dark:text-slate-100">{title}</div>
-            <div className="text-slate-600 dark:text-slate-300 text-sm">{subtitle}</div>
-            
-            {/* Note: If your affiliations text (e.g., "Palacky University / DTU")
-             is not appearing, you must manually ensure it is part of the 'subtitle'
-             string in your 'milestones' array data, as this component no longer
-             accesses a separate 'affiliations' prop from the old interface. */}
-            
-          </div>
-          
-          {/* Year (on the right for clean alignment) */}
-          <div className="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap ml-4 pt-1">
-            {year}
-          </div>
-        </div>
+  return (
+    <div
+      id={anchorId}
+      // Clean vertical alignment: full width, no staggering or offsets
+      className={`relative flex items-start w-full`}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={() => setOpen(false)}
+    >
+      {/* REMOVED <motion.img> tag (the logos) */}
+      
+      <motion.div
+        whileHover={{ y: -2 }}
+        // Card takes full width for clean vertical alignment
+        className="p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 w-full cursor-pointer"
+        onClick={() => setOpen(!open)} // Allows touch interaction on mobile
+      >
+        <div className="flex justify-between items-start">
+          {/* Left Side Text */}
+          <div>
+            <div className="font-semibold text-slate-900 dark:text-slate-100">{title}</div>
+            <div className="text-slate-600 dark:text-slate-300 text-sm">{subtitle}</div>
+            
+            {/* RESTORED AFFILIATIONS DISPLAY */}
+            {affiliationNames && (
+              <div className="mt-1 text-xs text-indigo-700 dark:text-indigo-400 font-medium">
+                {affiliationNames}
+              </div>
+            )}
+          </div>
+          
+          {/* Right Side Year */}
+          <div className="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap ml-4 pt-1">
+            {year}
+          </div>
+        </div>
 
-        {/* EXPANDABLE DETAIL SECTION - The hover text now expands cleanly within the card */}
-        <AnimatePresence>
-          {open && details && (
-            <motion.div
-              initial={{ opacity: 0, height: 0, marginTop: 0 }}
-              animate={{ opacity: 1, height: "auto", marginTop: 8 }}
-              exit={{ opacity: 0, height: 0, marginTop: 0 }}
-              transition={{ duration: 0.3 }}
-              className="overflow-hidden pt-2 border-t border-slate-200 dark:border-slate-700/50 mt-2"
-            >
-              <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-200">{details}</p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </div>
-  );
+        {/* EXPANDABLE DETAIL SECTION */}
+        <AnimatePresence>
+          {open && details && (
+            <motion.div
+              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+              animate={{ opacity: 1, height: "auto", marginTop: 8 }}
+              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden pt-2 border-t border-slate-200 dark:border-slate-700/50 mt-2"
+            >
+              <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-200">{details}</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </div>
+  );
 };
-
 
 // ADD this interface definition near the existing MilestoneProps interface (around line 99)
 
