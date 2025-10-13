@@ -103,64 +103,67 @@ interface MilestoneProps {
 // REPLACE the existing Milestone function entirely (starting around line 115)
 
 // REPLACE the existing Milestone function entirely (starting around line 115)
-
-// REPLACE the existing Milestone function entirely (starting around line 115)
-
 const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, affiliations }: MilestoneProps) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
-  // We will create a clean two-column look for desktop
-  const mainCardStyle = side === "left"
-    ? "md:mr-24" // Push the card away from the center line to the right
-    : "md:ml-24"; // Push the card away from the center line to the left
+  // Class to push the card left or right, creating the staggered look.
+  const mainCardStyle = side === "left"
+    ? "md:mr-24" // For left-aligned text, push it right (i.e., the card starts further from the left edge)
+    : "md:ml-24"; // For right-aligned text, push it left (i.e., the card starts further from the left edge)
 
-  return (
-    <div
-      id={anchorId}
-      // Adjusted to remove the flex-row-reverse logic since we are removing the logo box
-      className={`relative flex items-start gap-4 flex-col md:flex-row ${side === "right" ? "md:justify-end" : "md:justify-start"}`}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-      onFocus={() => setOpen(true)}
-      onBlur={() => setOpen(false)}
-    >
-      
-      {/* The main academic card is centered relative to the whole container now */}
-      <motion.div
-        whileHover={{ y: -2 }}
-        className={`p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 flex-grow w-full md:w-[60%] cursor-pointer ${mainCardStyle}`}
-        onClick={() => setOpen(!open)} // Allows touch interaction on mobile
-      >
-        <div className="flex justify-between items-start">
-          {/* Year on the right for clean alignment */}
-          <div className="font-semibold text-slate-900 dark:text-slate-100">{title}</div>
-          <div className="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap ml-4">{year}</div>
-        </div>
-        
-        <div className="text-slate-600 dark:text-slate-300 text-sm">{subtitle}</div>
-        
-        {/* Affiliation names */}
-        <div className="mt-1 text-xs text-indigo-700 dark:text-indigo-400 font-medium">
-          {affiliations.map(a => a.name).join(' / ')}
-        </div>
+  return (
+    <div
+      id={anchorId}
+      // CORRECTED: Ensure the container allows the card to be justified to the end for 'right' side
+      className={`relative flex items-start gap-4 w-full ${side === "right" ? "md:justify-end" : "md:justify-start"}`}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={() => setOpen(false)}
+    >
+      
+      {/* Main Content Card - Now acts as the expandable container */}
+      <motion.div
+        whileHover={{ y: -2 }}
+        // CORRECTED: Use flex-none and a fixed width to ensure the staggering works correctly
+        className={`p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 flex-none w-full md:w-[480px] cursor-pointer ${mainCardStyle}`}
+        onClick={() => setOpen(!open)} // Allows touch interaction on mobile
+      >
+        <div className="flex justify-between items-start">
+          {/* Title and Subtitle Group */}
+          <div>
+            <div className="font-semibold text-slate-900 dark:text-slate-100">{title}</div>
+            <div className="text-slate-600 dark:text-slate-300 text-sm">{subtitle}</div>
+            
+            {/* Affiliation names (below subtitle) */}
+            <div className="mt-1 text-xs text-indigo-700 dark:text-indigo-400 font-medium">
+              {affiliations.map(a => a.name).join(' / ')}
+            </div>
+          </div>
+          
+          {/* Year (on the right for clean alignment) */}
+          <div className="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap ml-4 pt-1">
+            {year}
+          </div>
+        </div>
 
-        {/* EXPANDABLE DETAIL SECTION - The elegant hover solution */}
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ opacity: 0, height: 0, marginTop: 0 }}
-              animate={{ opacity: 1, height: "auto", marginTop: 8 }}
-              exit={{ opacity: 0, height: 0, marginTop: 0 }}
-              transition={{ duration: 0.3 }}
-              className="overflow-hidden pt-2 border-t border-slate-200 dark:border-slate-700/50 mt-2"
-            >
-              <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-200">{details}</p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </div>
-  );
+        {/* EXPANDABLE DETAIL SECTION - The clean, elegant solution */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+              animate={{ opacity: 1, height: "auto", marginTop: 8 }}
+              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden pt-2 border-t border-slate-200 dark:border-slate-700/50 mt-2"
+            >
+              <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-200">{details}</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </div>
+  );
 };
 
 
@@ -447,7 +450,7 @@ const shellBg =
               I am a quantum information theorist who enjoys turning messy questions into precise models and testable claims. Answers grow cheaper every day, but meaningful questions do not. I give more weight to the question than to the answer. Most of the work is in framing the right question. Once that is clear the answer tends to follow.
             </p>
             <p>
-              Most of my <a href="#work" className="font-semibold text-indigo-700 hover:underline dark:text-indigo-300">work</a> sits in continuous variable quantum key distribution, where multivariate Gaussian structure, careful covariance modelling and information theoretic reasoning are everyday tools rather than buzzwords. My toolkit includes stochastic modelling and <a href="#work" className="font-semibold text-indigo-700 hover:underline dark:text-indigo-300">coupled stochastic differential equations with linear stability analysis</a>, optimisation under constraints and Monte Carlo methods for model validation, stress testing and uncertainty propagation through resampling and simulation. I work in <strong className="font-semibold">Mathematica</strong> and <strong className="font-semibold">Python</strong>, moving between symbolic derivations and numerical experiments as needed.
+              Most of my <a href="#work" className="font-semibold text-indigo-700 hover:underline dark:text-indigo-300">work</a> sits in continuous variable quantum key distribution, where multivariate Gaussian structure, careful covariance modelling and information theoretic reasoning are everyday tools rather than buzzwords. My toolkit includes stochastic modelling and coupled stochastic differential equations with linear stability analysis, optimisation under constraints and Monte Carlo methods for model validation, stress testing and uncertainty propagation through resampling and simulation. I work in <strong className="font-semibold">Mathematica</strong> and <strong className="font-semibold">Python</strong>, moving between symbolic derivations and numerical experiments as needed.
             </p>
             <p>
               Information theory guides many of my choices. I use <strong className="font-semibold">Shannon entropy</strong> and <strong className="font-semibold">mutual information</strong> to think about signal content. I rely on <strong className="font-semibold">Fisher information</strong> and <strong className="font-semibold">Cramér Rao bounds</strong> to judge estimator quality. I compare models with <strong className="font-semibold">Kullback Leibler divergence</strong> and related f divergences. For time series I look at <strong className="font-semibold">entropy rate</strong>. For feature design I lean on the <strong className="font-semibold">data processing inequality</strong> and the <strong className="font-semibold">information bottleneck view</strong>. These tools help me decide what the data can actually support.
