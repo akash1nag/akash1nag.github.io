@@ -239,11 +239,11 @@ const milestones: MilestoneProps[] = [
     affiliations: [
       {
         name: "Palacký University (Czechia)",
-        logo: "/upol.png", 
+    
       },
       {
         name: "DTU Technical University of Denmark (Experimental Collaboration)",
-        logo: "/dtu.png", 
+        
       },
     ],
     details:
@@ -258,11 +258,11 @@ const milestones: MilestoneProps[] = [
     affiliations: [
       {
         name: "FAU Erlangen-Nuremberg (Germany)",
-        logo: "/fau.png", 
+         
       },
       {
         name: "Max Planck Institute for Science of Light",
-        logo: "/mpl.png", 
+         
       },
     ],
     details:
@@ -277,7 +277,7 @@ const milestones: MilestoneProps[] = [
     affiliations: [
       {
         name: "University of Hyderabad (India)",
-        logo: "/uoh.png", 
+        
       },
     ],
     details:
