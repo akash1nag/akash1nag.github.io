@@ -68,27 +68,25 @@ function useTheme() {
 
 
 
-type MilestoneSide = "left" | "right";
-
-
+// REPLACE the existing MilestoneProps interface entirely (around Line 104)
+type MilestoneSide = "left" | "right"; // Keep this type definition
 
 interface MilestoneProps {
   title: string;
   subtitle: string;
   year: string;
-  img: string; // Keeping for compatibility, though unused in new component
+  img?: string; // CRITICAL FIX: Made 'img' optional (?) to resolve TS2741 error
   side?: MilestoneSide;
   details?: string; // extra info revealed on hover/focus
   forceOpen?: boolean; // controlled open from roadmap beacons
   anchorId?: string; // id for deep linking
-  onIntent?: () => void; // Keeping for compatibility
+  onIntent?: () => void; // hover/focus intent callback
   
-  // NEW: Structure to match your data array
+  // RESTORED: Structure to match your affiliations data
   affiliations: {
     name: string;
   }[];
 }
-
 
 
 // --------------------------------------------------
@@ -99,8 +97,7 @@ interface MilestoneProps {
 
 
 
-// REPLACE the existing Milestone function entirely (starting around line 115)
-
+// REPLACE the entire Milestone component function (starting around Line 123)
 const Milestone = ({ title, subtitle, year, details, anchorId, affiliations }: MilestoneProps) => {
   const [open, setOpen] = React.useState(false);
   
@@ -117,13 +114,11 @@ const Milestone = ({ title, subtitle, year, details, anchorId, affiliations }: M
       onFocus={() => setOpen(true)}
       onBlur={() => setOpen(false)}
     >
-      {/* REMOVED <motion.img> tag (the logos) */}
-      
       <motion.div
         whileHover={{ y: -2 }}
         // Card takes full width for clean vertical alignment
         className="p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 w-full cursor-pointer"
-        onClick={() => setOpen(!open)} // Allows touch interaction on mobile
+        onClick={() => setOpen(!open)}
       >
         <div className="flex justify-between items-start">
           {/* Left Side Text */}
@@ -163,6 +158,8 @@ const Milestone = ({ title, subtitle, year, details, anchorId, affiliations }: M
     </div>
   );
 };
+
+
 
 // ADD this interface definition near the existing MilestoneProps interface (around line 99)
 
