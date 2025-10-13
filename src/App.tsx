@@ -104,51 +104,47 @@ interface MilestoneProps {
 
 // REPLACE the existing Milestone function entirely (starting around line 115)
 
+// REPLACE the existing Milestone function entirely (starting around line 115)
+
 const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, affiliations }: MilestoneProps) => {
   const [open, setOpen] = React.useState(false);
+
+  // We will create a clean two-column look for desktop
+  const mainCardStyle = side === "left"
+    ? "md:mr-24" // Push the card away from the center line to the right
+    : "md:ml-24"; // Push the card away from the center line to the left
 
   return (
     <div
       id={anchorId}
-      // Uses relative positioning and a flexible row structure
-      className={`relative flex items-start gap-4 ${side === "left" ? "md:flex-row" : "md:flex-row-reverse"}`}
+      // Adjusted to remove the flex-row-reverse logic since we are removing the logo box
+      className={`relative flex items-start gap-4 flex-col md:flex-row ${side === "right" ? "md:justify-end" : "md:justify-start"}`}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
       onFocus={() => setOpen(true)}
       onBlur={() => setOpen(false)}
     >
       
-      {/* Logos/Affiliations Container (Fixed size, flex-shrink-0) */}
-      <div className="flex flex-col gap-1 p-2 w-28 h-28 md:w-32 md:h-32 justify-center items-center border rounded-2xl shadow border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 flex-shrink-0">
-        {affiliations.map((affil) => (
-          <img
-            key={affil.name}
-            loading="lazy"
-            decoding="async"
-            src={affil.logo}
-            alt={affil.name}
-            className={`object-contain transition-all duration-300 ${affiliations.length > 1 ? "max-h-12 w-auto" : "max-h-20 w-auto"}`}
-          />
-        ))}
-      </div>
-
-
-      {/* Main Content Card - Now acts as the expandable container */}
+      {/* The main academic card is centered relative to the whole container now */}
       <motion.div
         whileHover={{ y: -2 }}
-        className="p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 flex-grow cursor-pointer"
+        className={`p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 flex-grow w-full md:w-[60%] cursor-pointer ${mainCardStyle}`}
         onClick={() => setOpen(!open)} // Allows touch interaction on mobile
       >
-        <div className="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">{year}</div>
-        <div className="font-semibold text-slate-900 dark:text-slate-100">{title}</div>
+        <div className="flex justify-between items-start">
+          {/* Year on the right for clean alignment */}
+          <div className="font-semibold text-slate-900 dark:text-slate-100">{title}</div>
+          <div className="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap ml-4">{year}</div>
+        </div>
+        
         <div className="text-slate-600 dark:text-slate-300 text-sm">{subtitle}</div>
         
-        {/* Display Affiliation names under subtitle */}
+        {/* Affiliation names */}
         <div className="mt-1 text-xs text-indigo-700 dark:text-indigo-400 font-medium">
           {affiliations.map(a => a.name).join(' / ')}
         </div>
 
-        {/* EXPANDABLE DETAIL SECTION - Elegant Solution */}
+        {/* EXPANDABLE DETAIL SECTION - The elegant hover solution */}
         <AnimatePresence>
           {open && (
             <motion.div
