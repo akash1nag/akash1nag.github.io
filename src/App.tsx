@@ -101,30 +101,27 @@ interface MilestoneProps {
 // REPLACE the existing Milestone function entirely (starting around line 115)
 
 // REPLACE the existing Milestone function entirely (starting around Line 123)
-const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, affiliations }: MilestoneProps) => {
+const Milestone = ({ title, subtitle, year, details, anchorId }: MilestoneProps) => {
+  // This version ignores the unused 'img' and 'side' props to fix the layout.
+  
   const [open, setOpen] = React.useState(false);
-
-  // Class to push the card left or right, creating the desired staggered look.
-  const mainCardStyle = side === "left"
-    ? "md:mr-24" // For left-aligned text, push it right (away from the center)
-    : "md:ml-24"; // For right-aligned text, push it left (away from the center)
 
   return (
     <div
       id={anchorId}
-      // CRITICAL CSS FIX: Ensures the container can justify items to the end for 'right' sided cards
-      className={`relative flex items-start gap-4 w-full ${side === "right" ? "md:justify-end" : "md:justify-start"}`}
+      // CRITICAL FIX: Ensures the container takes full width (w-full) for vertical alignment.
+      className={`relative flex items-start w-full`}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
       onFocus={() => setOpen(true)}
       onBlur={() => setOpen(false)}
     >
       
-      {/* Main Content Card - Now acts as the expandable container */}
+      {/* Main Content Card - Now acts as the full-width container */}
       <motion.div
         whileHover={{ y: -2 }}
-        // CRITICAL CSS FIX: Use flex-none and a fixed width to ensure the staggering works correctly on desktop
-        className={`p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 flex-none w-full md:w-[480px] cursor-pointer ${mainCardStyle}`}
+        // CRITICAL FIX: Forces full width (w-full) on all screens and removes all offsets.
+        className={`p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 w-full cursor-pointer`}
         onClick={() => setOpen(!open)} // Allows touch interaction on mobile
       >
         <div className="flex justify-between items-start">
@@ -133,11 +130,11 @@ const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, af
             <div className="font-semibold text-slate-900 dark:text-slate-100">{title}</div>
             <div className="text-slate-600 dark:text-slate-300 text-sm">{subtitle}</div>
             
-            {/* Affiliation names (below subtitle) */}
-            <div className="mt-1 text-xs text-indigo-700 dark:text-indigo-400 font-medium">
-              {/* Renders affiliations without logos, joined by ' / ' */}
-              {affiliations.map(a => a.name).join(' / ')}
-            </div>
+            {/* Note: If your affiliations text (e.g., "Palacky University / DTU")
+             is not appearing, you must manually ensure it is part of the 'subtitle'
+             string in your 'milestones' array data, as this component no longer
+             accesses a separate 'affiliations' prop from the old interface. */}
+            
           </div>
           
           {/* Year (on the right for clean alignment) */}
@@ -146,9 +143,9 @@ const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, af
           </div>
         </div>
 
-        {/* EXPANDABLE DETAIL SECTION */}
+        {/* EXPANDABLE DETAIL SECTION - The hover text now expands cleanly within the card */}
         <AnimatePresence>
-          {open && (
+          {open && details && (
             <motion.div
               initial={{ opacity: 0, height: 0, marginTop: 0 }}
               animate={{ opacity: 1, height: "auto", marginTop: 8 }}
@@ -164,6 +161,7 @@ const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, af
     </div>
   );
 };
+
 
 // ADD this interface definition near the existing MilestoneProps interface (around line 99)
 
