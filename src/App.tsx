@@ -103,51 +103,41 @@ interface MilestoneProps {
 // REPLACE the existing Milestone function entirely (starting around line 115)
 
 // REPLACE the existing Milestone function entirely (starting around line 115)
-// Assuming you already have the affiliations logic inside this component.
 
-const Milestone = ({ title, subtitle, year, side = "left", details, forceOpen = false, anchorId, onIntent, affiliations }: MilestoneProps) => {
-  const [localOpen, setLocalOpen] = React.useState(false);
-  const open = forceOpen || localOpen;
-
-  // --- Calculate positioning for the detail card ---
-  // The main card is 100% wide on mobile, and centered relative to the logo on desktop.
-  // The detail card needs to appear on the side *opposite* the main text box.
-
-  const detailCardPositionClass = side === "left"
-    ? "md:right-[calc(100%+1rem)] md:left-auto" // Position detail card far to the right of the main text box
-    : "md:left-[calc(100%+1rem)] md:right-auto"; // Position detail card far to the left of the main text box
+const Milestone = ({ title, subtitle, year, side = "left", details, anchorId, affiliations }: MilestoneProps) => {
+  const [open, setOpen] = React.useState(false);
 
   return (
     <div
       id={anchorId}
+      // Uses relative positioning and a flexible row structure
       className={`relative flex items-start gap-4 ${side === "left" ? "md:flex-row" : "md:flex-row-reverse"}`}
-      onMouseEnter={() => { setLocalOpen(true); onIntent?.(); }}
-      onMouseLeave={() => setLocalOpen(false)}
-      onFocus={() => { setLocalOpen(true); onIntent?.(); }}
-      onBlur={() => setLocalOpen(false)}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={() => setOpen(false)}
     >
       
-      {/* Logos/Affiliations Container */}
-      <div className="flex flex-col gap-2 p-2 w-28 h-28 md:w-32 md:h-32 justify-center items-center border rounded-2xl shadow border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 flex-shrink-0">
+      {/* Logos/Affiliations Container (Fixed size, flex-shrink-0) */}
+      <div className="flex flex-col gap-1 p-2 w-28 h-28 md:w-32 md:h-32 justify-center items-center border rounded-2xl shadow border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 flex-shrink-0">
         {affiliations.map((affil) => (
-          <motion.img
+          <img
             key={affil.name}
-            whileHover={{ scale: 1.05 }}
             loading="lazy"
             decoding="async"
             src={affil.logo}
             alt={affil.name}
-            className={`object-contain ${affiliations.length > 1 ? "max-h-12 w-auto" : "max-h-20 w-auto"}`}
+            className={`object-contain transition-all duration-300 ${affiliations.length > 1 ? "max-h-12 w-auto" : "max-h-20 w-auto"}`}
           />
         ))}
       </div>
 
 
-      {/* Main Content Card */}
+      {/* Main Content Card - Now acts as the expandable container */}
       <motion.div
         whileHover={{ y: -2 }}
-        // Added flex-grow to make sure the card takes up all remaining space horizontally
-        className="p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 flex-grow"
+        className="p-4 rounded-2xl shadow-sm border bg-white/80 backdrop-blur dark:bg-slate-900/70 dark:border-slate-700 flex-grow cursor-pointer"
+        onClick={() => setOpen(!open)} // Allows touch interaction on mobile
       >
         <div className="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">{year}</div>
         <div className="font-semibold text-slate-900 dark:text-slate-100">{title}</div>
@@ -157,29 +147,22 @@ const Milestone = ({ title, subtitle, year, side = "left", details, forceOpen = 
         <div className="mt-1 text-xs text-indigo-700 dark:text-indigo-400 font-medium">
           {affiliations.map(a => a.name).join(' / ')}
         </div>
-      </motion.div>
 
-
-      {/* Hover card (NEW POSITIONING) */}
-      <AnimatePresence>
-        {open && details && (
-          <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
-            transition={{ type: "spring", stiffness: 380, damping: 30 }}
-            role="dialog"
-            aria-label={`${title} details`}
-            // Use absolute positioning with dynamic left/right based on side,
-            // and set width to be predictable and wide enough.
-            className={`absolute ${detailCardPositionClass} z-20 top-0 mt-0 w-80 md:w-[32rem]`}
-          >
-            <div className="rounded-2xl border shadow-lg p-4 bg-white/95 dark:bg-slate-900/95 dark:border-slate-700">
+        {/* EXPANDABLE DETAIL SECTION - Elegant Solution */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+              animate={{ opacity: 1, height: "auto", marginTop: 8 }}
+              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden pt-2 border-t border-slate-200 dark:border-slate-700/50 mt-2"
+            >
               <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-200">{details}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </div>
   );
 };
