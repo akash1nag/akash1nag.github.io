@@ -365,6 +365,8 @@ const shellBg =
 
                 <span className="px-3 py-1 rounded-full bg-indigo-600 text-white text-xs border border-transparent">Gaussian states</span>
 
+                <span className="px-3 py-1 rounded-full bg-indigo-600 text-white text-xs border border-transparent">Multipartite state</span>
+
                 <span className="px-3 py-1 rounded-full bg-emerald-600 text-white text-xs border border-transparent">Time-series</span>
 
                 <span className="px-3 py-1 rounded-full bg-emerald-600 text-white text-xs border border-transparent">Risk & ML</span>
