@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 //import { Compass, Github, Mail, Moon, Sun, HelpCircle, ListTree, FlaskConical, ShieldCheck } from "lucide-react";
 
-import { Compass, Github, Mail, Moon, Sun } from "lucide-react";
+import { Compass, Mail, Moon, Sun, FlaskConical } from "lucide-react";
 
 // --------------------------------------------------
 
