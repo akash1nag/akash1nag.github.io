@@ -374,30 +374,17 @@ const shellBg =
               </div>
 
               <div className="mt-6 flex flex-wrap gap-3">
-
                 <a href="#work" className="px-4 py-2 rounded-xl bg-slate-900 text-white shadow hover:shadow-md dark:bg-slate-100 dark:text-slate-900">View Work</a>
-
                 <a href="#contact" className="px-4 py-2 rounded-xl bg-white text-slate-900 border shadow hover:shadow-md dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700">Contact</a>
-
                 <a
-
-                  href="https://github.com/"
-
+                  href="https://www.researchgate.net/profile/Akash-Oruganti/research" // <-- Replace with your actual ResearchGate URL
                   target="_blank"
-
                   rel="noopener noreferrer"
-
                   className="px-4 py-2 rounded-xl bg-white text-slate-900 border shadow hover:shadow-md dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700"
-
                 >
-
-                  GitHub
-
+                  ResearchGate 🔬
                 </a>
-
               </div>
-
-            </div>
 
 
 
@@ -444,13 +431,13 @@ const shellBg =
               I am a quantum information theorist who enjoys turning messy questions into precise models and testable claims. Answers grow cheaper every day, but meaningful questions do not. I give more weight to the question than to the answer. Most of the work is in framing the right question. Once that is clear the answer tends to follow.
             </p>
             <p>
-              Most of my <a href="#work" className="font-semibold text-indigo-700 hover:underline dark:text-indigo-300">work</a> sits in continuous variable quantum key distribution, where multivariate Gaussian structure, careful covariance modelling and information theoretic reasoning are everyday tools rather than buzzwords. My toolkit includes stochastic modelling and coupled stochastic differential equations with linear stability analysis, optimisation under constraints and Monte Carlo methods for model validation, stress testing and uncertainty propagation through resampling and simulation. I work in <strong className="font-semibold">Mathematica</strong> and <strong className="font-semibold">Python</strong>, moving between symbolic derivations and numerical experiments as needed.
+              Most of my <a href="#work" className="font-semibold text-indigo-700 hover:underline dark:text-indigo-300">work</a> sits in continuous variable quantum key distribution, where multivariate Gaussian structure, careful covariance modelling and information theoretic reasoning are everyday tools rather than buzzwords. My toolkit includes stochastic modelling and coupled stochastic differential equations with linear stability analysis, optimisation under constraints and Monte Carlo methods for model validation, stress testing and uncertainty propagation through resampling and simulation. I work in Mathematica and Python, moving between symbolic derivations and numerical experiments as needed.
             </p>
             <p>
-              Information theory guides many of my choices. I use <strong className="font-semibold">Shannon entropy</strong> and <strong className="font-semibold">mutual information</strong> to think about signal content. I rely on <strong className="font-semibold">Fisher information</strong> and <strong className="font-semibold">Cramér Rao bounds</strong> to judge estimator quality. I compare models with <strong className="font-semibold">Kullback Leibler divergence</strong> and related f divergences. For time series I look at <strong className="font-semibold">entropy rate</strong>. For feature design I lean on the <strong className="font-semibold">data processing inequality</strong> and the <strong className="font-semibold">information bottleneck view</strong>. These tools help me decide what the data can actually support.
+              Information theory guides many of my choices. I use Shannon entropy and mutual information to think about signal content. I rely on Fisher information and Cramér Rao bounds to judge estimator quality. I compare models with Kullback Leibler divergence and related f divergences. For time series I look at entropy rate. For feature design I lean on the data processing inequality and the information bottleneck view. These tools help me decide what the data can actually support.
             </p>
             <p>
-              I like <strong className="font-semibold">proof by attempted destruction</strong>. Before I trust a result I try to break it. I run ablation studies and <strong className="font-semibold">back tests</strong>, use <strong className="font-semibold">bootstrap intervals</strong> and keep a clear account of noise sources. In quantum crypto this shows up as <strong className="font-semibold">finite size analyses</strong> with confidence intervals that hold outside the asymptotic limit. In applied projects it means reporting uncertainty with the same prominence as point estimates.
+              I like proof by attempted destruction. Before I trust a result I try to break it. I run ablation studies and back tests, use bootstrap intervals and keep a clear account of noise sources. In quantum crypto this shows up as finite size analyses with confidence intervals that hold outside the asymptotic limit. In applied projects it means reporting uncertainty with the same prominence as point estimates.
             </p>
             <p>
               Right now I am building a stock selection feature space that blends dynamical systems intuition with information theoretic criteria. The plan is simple. Design interpretable features. Test them with falsification minded checks. Keep what survives. Before any modelling I write an exhaustive list of the conditions under which the data was obtained and the assumptions those imply. The vetted features then feed machine learning models such as logistic regression, random forests, gradient boosted trees, and small neural networks.
@@ -548,7 +535,7 @@ const shellBg =
 
               <a
 
-                href="mailto:email@example.com"
+                href="mailto:akash.nag.10@gmail.com"
 
                 className="flex items-center gap-2 hover:underline"
 
@@ -556,26 +543,19 @@ const shellBg =
 
               >
 
-                <Mail className="h-4 w-4" aria-hidden="true" /> email@example.com
+                <Mail className="h-4 w-4" aria-hidden="true" /> akash.nag.10@gmail.com
 
               </a>
 
-              <a
-
-                href="https://github.com/"
-
+             <a
+                href="https://www.researchgate.net/profile/Akash-Oruganti/research" // <-- Replace with your actual ResearchGate URL
                 target="_blank"
-
                 rel="noopener noreferrer"
-
                 className="flex items-center gap-2 hover:underline"
-
-                aria-label="Open GitHub profile"
-
+                aria-label="Open ResearchGate profile"
               >
-
-                <Github className="h-4 w-4" aria-hidden="true" /> GitHub
-
+                {/* ResearchGate uses a different icon, but we'll use an existing one for simplicity */}
+                <FlaskConical className="h-4 w-4" aria-hidden="true" /> ResearchGate
               </a>
 
             </div>
