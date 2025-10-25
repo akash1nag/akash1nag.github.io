@@ -98,7 +98,7 @@ interface MilestoneProps {
 
 
 // REPLACE the entire Milestone component function (starting around Line 123)
-const Milestone = ({ title, subtitle, year, details, anchorId, affiliations }: MilestoneProps) => {
+const Milestone = ({ title, subtitle, details, anchorId, affiliations }: MilestoneProps) => {
   const [open, setOpen] = React.useState(false);
   
   // Joins the affiliation names with ' / '
