@@ -134,10 +134,10 @@ const Milestone = ({ title, subtitle, year, details, anchorId, affiliations }: M
             )}
           </div>
           
-          {/* Right Side Year */}
+          {/* Right Side Year 
           <div className="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap ml-4 pt-1">
             {year}
-          </div>
+          </div> */}
         </div>
 
         {/* EXPANDABLE DETAIL SECTION */}
@@ -312,7 +312,7 @@ const shellBg =
 
           <div className="flex items-center gap-3 text-sm">
 
-            <a href="#About" className="opacity-80 hover:opacity-100 focus:underline">About</a>
+            <a href="#Education" className="opacity-80 hover:opacity-100 focus:underline">Education</a>
 
             <a href="#work" className="opacity-80 hover:opacity-100 focus:underline">Work</a>
 
@@ -516,8 +516,8 @@ const shellBg =
           </div>
         </section>
 
- <section id="About" className="mx-auto max-w-6xl px-6 pb-20">
-    <h2 className="text-2xl font-semibold mb-6">About</h2>
+ <section id="Education" className="mx-auto max-w-6xl px-6 pb-20">
+    <h2 className="text-2xl font-semibold mb-6">Education</h2>
     <div className="flex flex-col gap-10">
         {milestones.map((m, _) => (  // <-- The fix is here
             <Milestone key={m.title} {...m} />
